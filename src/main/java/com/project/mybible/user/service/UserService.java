@@ -9,17 +9,30 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class UserService {
 
     private final UserFacade userFacade;
     private final UserRepository userRepository;
 
 
-    @Transactional(readOnly = false)
+    @Transactional
     public void join(CreateUserRequestDto request) {
         userFacade.validateEmail(request.getEmail());
 
         userRepository.save(request.toEntity());
     }
+
+    @Transactional
+    public void selectSentence(ShortLabelSearchRequestDto request) {
+        Bible bible = bibleFacade.getSentence(
+                request.getShortLabel(),
+                request.getChapter(),
+                request.getParagraph()
+        );
+
+        User user = userFacade.getUser(1L);
+
+        bible.setUser(user);
+    }
+
 }

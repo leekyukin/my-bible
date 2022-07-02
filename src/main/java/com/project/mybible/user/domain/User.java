@@ -25,6 +25,9 @@ public class User extends BaseTimeEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Bible> myList = new ArrayList<>();
 
+    public List<Bible> getMyList() {
+        return myList;
+    }
 
     @Builder
     User(String name, String email, String password) {

@@ -26,7 +26,7 @@ public class UserController {
     public void selectSentence(
             @RequestBody ShortLabelSearchRequestDto request
     ) {
-        userService.selectSentence(request);
+        userService.addSentence(request);
     }
 
 }

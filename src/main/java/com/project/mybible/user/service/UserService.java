@@ -23,7 +23,7 @@ public class UserService {
     }
 
     @Transactional
-    public void selectSentence(ShortLabelSearchRequestDto request) {
+    public void addSentence(ShortLabelSearchRequestDto request) {
         Bible bible = bibleFacade.getSentence(
                 request.getShortLabel(),
                 request.getChapter(),

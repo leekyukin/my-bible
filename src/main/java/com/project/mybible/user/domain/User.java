@@ -4,6 +4,7 @@ import com.project.mybible.bible.domain.Bible;
 import com.project.mybible.golbal.entity.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Getter
-
+@NoArgsConstructor
 public class User extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +23,7 @@ public class User extends BaseTimeEntity {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Bible> selected = new ArrayList<>();
+    private List<Bible> myList = new ArrayList<>();
 
 
     @Builder
@@ -31,7 +32,5 @@ public class User extends BaseTimeEntity {
         this.email = email;
         this.password = password;
     }
-
-
 
 }

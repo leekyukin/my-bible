@@ -21,4 +21,12 @@ public class UserController {
     ) {
         userService.join(request);
     }
+
+    @GetMapping("/select")
+    public void selectSentence(
+            @RequestBody ShortLabelSearchRequestDto request
+    ) {
+        userService.selectSentence(request);
+    }
+
 }

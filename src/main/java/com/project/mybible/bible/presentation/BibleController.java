@@ -2,7 +2,7 @@ package com.project.mybible.bible.presentation;
 
 import com.project.mybible.bible.presentation.dto.request.RangeSearchRequestDto;
 import com.project.mybible.bible.presentation.dto.request.ShortLabelSearchRequestDto;
-import com.project.mybible.bible.presentation.dto.response.ChapterResponseDto;
+import com.project.mybible.bible.presentation.dto.response.BibleResponseDto;
 import com.project.mybible.bible.service.BibleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ public class BibleController {
     private final BibleService bibleService;
 
     @GetMapping("/chapter")
-    public List<ChapterResponseDto> getChapter(
+    public List<BibleResponseDto> getChapter(
             @RequestBody ShortLabelSearchRequestDto request
     ) {
         log.info(
@@ -35,7 +35,7 @@ public class BibleController {
     }
 
     @GetMapping("/sentence")
-    public ChapterResponseDto getSentence(
+    public BibleResponseDto getSentence(
             @RequestBody ShortLabelSearchRequestDto request
     ) {
         log.info(
@@ -49,7 +49,7 @@ public class BibleController {
     }
 
     @GetMapping("/range")
-    public List<ChapterResponseDto> getRange(
+    public List<BibleResponseDto> getRange(
             @RequestBody RangeSearchRequestDto request
     ) {
         log.info(

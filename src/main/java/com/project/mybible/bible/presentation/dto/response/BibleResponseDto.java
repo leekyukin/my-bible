@@ -6,15 +6,15 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class ChapterResponseDto {
+public class BibleResponseDto {
 
     private String longLabel;
     private int chapter;
     private int paragraph;
     private String sentence;
 
-    public static ChapterResponseDto of (Bible bible) {
-        return ChapterResponseDto.builder()
+    public static BibleResponseDto of (Bible bible) {
+        return BibleResponseDto.builder()
                 .longLabel(bible.getLongLabel())
                 .chapter(bible.getChapter())
                 .paragraph(bible.getParagraph())

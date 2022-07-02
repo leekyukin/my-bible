@@ -4,7 +4,7 @@ import com.project.mybible.bible.domain.Bible;
 import com.project.mybible.bible.facade.BibleFacade;
 import com.project.mybible.bible.presentation.dto.request.RangeSearchRequestDto;
 import com.project.mybible.bible.presentation.dto.request.ShortLabelSearchRequestDto;
-import com.project.mybible.bible.presentation.dto.response.ChapterResponseDto;
+import com.project.mybible.bible.presentation.dto.response.BibleResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,31 +19,31 @@ public class BibleService {
 
     private final BibleFacade bibleFacade;
 
-    public List<ChapterResponseDto> getChapter(ShortLabelSearchRequestDto request) {
+    public List<BibleResponseDto> getChapter(ShortLabelSearchRequestDto request) {
         List<Bible> bibles = bibleFacade.getChapter(request.getShortLabel(), request.getChapter());
 
         return bibles.stream()
-                .map(ChapterResponseDto::of)
+                .map(BibleResponseDto::of)
                 .collect(Collectors.toList());
     }
 
-    public ChapterResponseDto getSentence(ShortLabelSearchRequestDto request) {
+    public BibleResponseDto getSentence(ShortLabelSearchRequestDto request) {
         Bible bible = bibleFacade.getSentence(
                 request.getShortLabel(),
                 request.getChapter(),
                 request.getParagraph()
         );
 
-        return ChapterResponseDto.of(bible);
+        return BibleResponseDto.of(bible);
     }
 
-    public List<ChapterResponseDto> getRange(RangeSearchRequestDto request) {
+    public List<BibleResponseDto> getRange(RangeSearchRequestDto request) {
         List<Bible> bible = bibleFacade.getChapter(request.getShortLabel(), request.getChapter());
 
         return bible.stream()
                 .dropWhile(b -> b.getParagraph() < request.getStartPara())
                 .takeWhile(b -> b.getParagraph() <= request.getEndPara())
-                .map(ChapterResponseDto::of)
+                .map(BibleResponseDto::of)
                 .collect(Collectors.toList());
     }
 }

@@ -1,12 +1,13 @@
 package com.project.mybible.user.presentation;
 
+import com.project.mybible.bible.presentation.dto.request.ShortLabelSearchRequestDto;
+import com.project.mybible.bible.presentation.dto.response.BibleResponseDto;
 import com.project.mybible.user.presentation.dto.request.CreateUserRequestDto;
 import com.project.mybible.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -29,4 +30,8 @@ public class UserController {
         userService.addSentence(request);
     }
 
+    @GetMapping("/myList")
+    public List<BibleResponseDto> getMyList() {
+        return userService.getMyList();
+    }
 }

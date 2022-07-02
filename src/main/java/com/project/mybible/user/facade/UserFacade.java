@@ -16,4 +16,10 @@ public class UserFacade {
             throw UserAlreadyExistsException.EXCEPTION;
         }
     }
+
+    public User getUser(Long id) {
+        return userRepository.findById(1L)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+    }
+
 }

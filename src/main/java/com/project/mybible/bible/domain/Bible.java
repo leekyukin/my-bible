@@ -1,5 +1,6 @@
 package com.project.mybible.bible.domain;
 
+import com.project.mybible.user.domain.User;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -24,5 +25,9 @@ public class Bible {
 
     @Column(name = "short_label")
     private String shortLabel; // 책 ("창", "출")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 }
 

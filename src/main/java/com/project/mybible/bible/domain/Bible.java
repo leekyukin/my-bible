@@ -1,16 +1,23 @@
 package com.project.mybible.bible.domain;
 
+import com.project.mybible.user.domain.MySentence;
 import com.project.mybible.user.domain.User;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Table(name = "bible2")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Bible {
 
     @Id
+    @Column(name = "bible_id")
     private Long idx;
 
     private int cate; // 구/신약 ( 1, 2 )
@@ -26,13 +33,8 @@ public class Bible {
     @Column(name = "short_label")
     private String shortLabel; // 책 ("창", "출")
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToMany(mappedBy = "bible", cascade = CascadeType.ALL)
+    private List<MySentence> mySentences = new ArrayList<>();
 
-    public void setUser(User user) {
-        this.user = user;
-        user.getMyList().add(this);
-    }
 }
 
